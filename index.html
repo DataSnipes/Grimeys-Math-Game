@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game</title>
+<style>
+body {
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: 50px;
+  background-color: #292929; /* Light background */
+}
+#question {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #ffffff; /* Darker text for readability */
+}
+.answer-button {
+  padding: 15px 30px; /* Increased padding */
+  margin: 10px; /* Increased margin */
+  font-size: 18px; /* Slightly larger font */
+  cursor: pointer;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  background-color: #aeaeae; /* Blue button color */
+  color: white;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.answer-button:hover {
+  background-color: #aeaeae; /* Darker blue on hover */
+}
+
+.answer-button:active {
+    transform: translateY(2px); /* slight press effect */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* reduced shadow on press */
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+</style>
+</head>
+<body>
+<div id="question"></div>
+<button class="answer-button" id="answer1"></button>
+<button class="answer-button" id="answer2"></button>
+<button class="answer-button" id="answer3"></button>
+<button class="answer-button" id="answer4"></button>
+<div id="result"></div>
+
+<script>
+const questions = [
+  { question: "5 + 3 = ?", answers: [8, 7, 9, 6], correctAnswer: 8 },
+  { question: "10 - 4 = ?", answers: [6, 5, 7, 8], correctAnswer: 6 },
+  { question: "2 x 6 = ?", answers: [12, 10, 14, 8], correctAnswer: 12 },
+  { question: "9 / 3 = ?", answers: [3, 2, 4, 5], correctAnswer: 3 },
+  { question: "7 + 2 = ?", answers: [9, 8, 10, 6], correctAnswer: 9 },
+  { question: "12 - 5 = ?", answers: [7, 6, 8, 9], correctAnswer: 7 },
+  { question: "4 x 3 = ?", answers: [12, 11, 13, 10], correctAnswer: 12 },
+  { question: "15 / 5 = ?", answers: [3, 4, 2, 5], correctAnswer: 3 },
+  { question: "6 + 6 = ?", answers: [12, 11, 13, 14], correctAnswer: 12 },
+  { question: "8 - 3 = ?", answers: [5, 4, 6, 7], correctAnswer: 5 },
+  { question: "7 x 11 = ?", answers: [55, 43, 68, 77], correctAnswer: 77 },
+];
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function displayQuestion() {
+  const currentQuestion = questions[currentQuestionIndex];
+  document.getElementById("question").textContent = currentQuestion.question;
+  document.getElementById("answer1").textContent = currentQuestion.answers[0];
+  document.getElementById("answer2").textContent = currentQuestion.answers[1];
+  document.getElementById("answer3").textContent = currentQuestion.answers[2];
+  document.getElementById("answer4").textContent = currentQuestion.answers[3];
+}
+
+function checkAnswer(selectedAnswer) {
+  const currentQuestion = questions[currentQuestionIndex];
+  if (selectedAnswer === currentQuestion.correctAnswer) {
+    score++;
+    document.getElementById("result").textContent = "Correct!";
+    document.getElementById("result").style.color = "green";
+  } else {
+    document.getElementById("result").textContent = "Incorrect!";
+    document.getElementById("result").style.color = "red";
+  }
+
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    setTimeout(displayQuestion, 1000); // Delay before next question
+  } else {
+    document.getElementById("question").textContent = `Game Over! Your score: ${score} / ${questions.length}`;
+    document.getElementById("answer1").style.display = "none";
+    document.getElementById("answer2").style.display = "none";
+    document.getElementById("answer3").style.display = "none";
+    document.getElementById("answer4").style.display = "none";
+    document.getElementById("result").textContent = "";
+  }
+}
+
+document.getElementById("answer1").addEventListener("click", () => checkAnswer(parseInt(document.getElementById("answer1").textContent)));
+document.getElementById("answer2").addEventListener("click", () => checkAnswer(parseInt(document.getElementById("answer2").textContent)));
+document.getElementById("answer3").addEventListener("click", () => checkAnswer(parseInt(document.getElementById("answer3").textContent)));
+document.getElementById("answer4").addEventListener("click", () => checkAnswer(parseInt(document.getElementById("answer4").textContent)));
+
+displayQuestion(); // Start the game
+</script>
+</body>
+</html>
