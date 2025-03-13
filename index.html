@@ -53,19 +53,10 @@ body {
 
 <script>
 const questions = [
-  { question: "5 + 3 = ?", answers: [8, 7, 9, 6], correctAnswer: 8 },
-  { question: "10 - 4 = ?", answers: [6, 5, 7, 8], correctAnswer: 6 },
-  { question: "2 x 6 = ?", answers: [12, 10, 14, 8], correctAnswer: 12 },
-  { question: "9 / 3 = ?", answers: [3, 2, 4, 5], correctAnswer: 3 },
-  { question: "7 + 2 = ?", answers: [9, 8, 10, 6], correctAnswer: 9 },
-  { question: "12 - 5 = ?", answers: [7, 6, 8, 9], correctAnswer: 7 },
-  { question: "4 x 3 = ?", answers: [12, 11, 13, 10], correctAnswer: 12 },
-  { question: "15 / 5 = ?", answers: [3, 4, 2, 5], correctAnswer: 3 },
-  { question: "6 + 6 = ?", answers: [12, 11, 13, 14], correctAnswer: 12 },
-  { question: "8 - 3 = ?", answers: [5, 4, 6, 7], correctAnswer: 5 },
-  { question: "7 x 11 = ?", answers: [55, 43, 68, 77], correctAnswer: 77 },
-   { question: "3 x 4 = ?", answers: [12, 13, 11, 21 ], correctAnswer: 12 },
-];
+  { question: "How Does Ice Affect Climate Change?", answers: [It Reflects Sunlight, It Absorbs Heat, It Heats The Earth, It Doesn't], correctAnswer:  It Reflects Sunlight },
+  { question: "How Does Ozone Act Close To The Ground?", answers: [A Greenhouse Gas, A Protectve Layer, null, null], correctAnswer: A Greenhouse Gas },
+  { question: "How Does Ozone Act High In The Atmosphere?", answers: [A Greenhouse Gas, A Protective Layer, null, null], correctAnswer: A Protective Layer },
+
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -92,7 +83,7 @@ function checkAnswer(selectedAnswer) {
 
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
-    setTimeout(displayQuestion, 1000); // Delay before next question
+    setTimeout(displayQuestion, 100); // Delay before next question
   } else {
     document.getElementById("question").textContent = `Game Over! Your score: ${score} / ${questions.length}`;
     document.getElementById("answer1").style.display = "none";
